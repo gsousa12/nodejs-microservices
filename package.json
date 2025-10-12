@@ -1,0 +1,12 @@
+{
+  "name": "orangepay",
+  "version": "1.0.0",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.14.0",
+  "devDependencies": {
+    "typescript": "~5.8.3"
+  }
+}
