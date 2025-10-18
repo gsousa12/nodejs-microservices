@@ -1,0 +1,17 @@
+{
+  "name": "@orangepay/schemas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc"
+  },
+  "packageManager": "pnpm@10.14.0",
+  "devDependencies": {
+    "typescript": "~5.8.3"
+  }
+}
