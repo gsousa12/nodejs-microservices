@@ -58,6 +58,12 @@ importers:
         specifier: ^7.1.7
         version: 7.1.9(@types/node@24.7.2)(terser@5.44.0)(tsx@4.20.6)
 
+  packages/types:
+    devDependencies:
+      typescript:
+        specifier: ~5.8.3
+        version: 5.8.3
+
   services/auth-service:
     dependencies:
       '@nestjs/common':
@@ -152,6 +158,12 @@ importers:
         specifier: ^8.20.0
         version: 8.46.0(eslint@9.37.0)(typescript@5.8.3)
 
+  services/notification-service:
+    dependencies:
+      express:
+        specifier: ^5.1.0
+        version: 5.1.0
+
   services/payment-service:
     dependencies:
       '@hono/node-server':
@@ -171,11 +183,7 @@ importers:
         specifier: ^5.8.3
         version: 5.8.3
 
-  services/report-service:
-    dependencies:
-      express:
-        specifier: ^5.1.0
-        version: 5.1.0
+  services/report-service: {}
 
 packages:
 

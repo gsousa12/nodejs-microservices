@@ -1,7 +1,11 @@
 {
   "name": "orangepay",
   "version": "1.0.0",
-  "scripts": {},
+  "scripts": {
+    "build:pkgs": "pnpm -r --filter @orangepay/types build",
+    "dev:auth": "pnpm run build:pkgs && pnpm --filter @orangepay/auth-service dev",
+    "dev:client": "pnpm run build:pkgs && pnpm --filter @orangepay/client dev"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
