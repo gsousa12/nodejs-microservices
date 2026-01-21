@@ -1,5 +1,12 @@
-export type ApiResponseType<TData = unknown> = {
-  success: boolean;
+type ApiSuccess<T> = {
+  success: true;
   message: string;
-  data?: TData;
+} & (T extends void ? {} : { data: T });
+
+type ApiError = {
+  success: false;
+  message: string;
 };
+
+// study note : Discriminated Unions
+export type ApiResponse<T = void> = ApiSuccess<T> | ApiError;
