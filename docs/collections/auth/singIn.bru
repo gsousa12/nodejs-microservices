@@ -1,0 +1,23 @@
+meta {
+  name: singIn
+  type: http
+  seq: 1
+}
+
+post {
+  url: {{gatewayURL}}/auth/sign-in
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "email": "teste@email.com",
+    "password": "12345678"
+  }
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}
