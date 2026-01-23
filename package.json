@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "scripts": {
     "build:pkgs": "pnpm -r --filter @orangepay/types --filter @orangepay/consts --filter @orangepay/utils build",
-    "dev:auth": "pnpm run build:pkgs && pnpm --filter @orangepay/auth-service dev",
-    "dev:client": "pnpm run build:pkgs && pnpm --filter @orangepay/client dev"
+    "dev:client": "pnpm run build:pkgs && pnpm --filter @orangepay/client dev",
+    "dev:core": "pnpm run build:pkgs && pnpm --filter @orangepay/gateway dev",
+    "dev:identity": "pnpm run build:pkgs && pnpm --filter @orangepay/identity dev",
+    "dev:all": "pnpm run build:pkgs && concurrently \"pnpm --filter @orangepay/gateway dev\" \"pnpm --filter @orangepay/identity dev\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "packageManager": "pnpm@10.14.0",
   "devDependencies": {
+    "concurrently": "^9.2.1",
     "typescript": "~5.8.3"
   }
 }
