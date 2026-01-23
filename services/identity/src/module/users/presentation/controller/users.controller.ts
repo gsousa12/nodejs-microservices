@@ -1,17 +1,41 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
 
 @Controller('users')
 export class UsersController {
-  @Post('/')
-  async create(@Body() request: any) {
+  @Post('/create')
+  async create(@Body() request: any): Promise<any> {
     console.log('createUserDto', request);
     await new Promise((resolve) => setTimeout(resolve, 100));
-    // throw new HttpException('Error de integração', 500);
+    //throw new HttpException('Error de integração', 500);
+    const user = false;
+
+    if (!user) {
+      return {
+        success: false,
+        message: 'usuario nao encontrado',
+        meta: {
+          requestId: '1234567890',
+          time: new Date(),
+          statusCodeError: HttpStatus.NOT_FOUND,
+        },
+      };
+    }
+
     return {
       success: true,
-      message: 'User created successfully',
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-      data: request,
+      message: 'Usuário criado com sucesso',
+      data: {
+        id: 'user_1234567890',
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        name: request.name,
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
+        email: request.email,
+        createdAt: new Date(),
+      },
+      meta: {
+        requestId: '1234567890',
+        time: new Date(),
+      },
     };
   }
 }
