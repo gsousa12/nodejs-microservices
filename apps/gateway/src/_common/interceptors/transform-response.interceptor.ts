@@ -1,4 +1,3 @@
-// common/interceptors/transform-response.interceptor.ts
 import {
   Injectable,
   NestInterceptor,
@@ -29,13 +28,12 @@ export class TransformResponseInterceptor<T>
 
     return next.handle().pipe(
       map(
-        (data) =>
+        (data: T) =>
           ({
             success: true,
             message: message,
-            // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
             data: data,
-          }) as unknown as ApiResponse<T>,
+          }) as ApiResponse<T>,
       ),
     );
   }
