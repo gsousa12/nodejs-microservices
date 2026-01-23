@@ -1,5 +1,5 @@
-import { SignInReqDTO, SignInResDTO } from './dtos';
-import { AuthService } from '../core/application/services/auth.service';
+import { SignInReqDTO, SignInResDTO } from '../dtos';
+import { AuthService } from '../../core/application/services/auth.service';
 import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { ResponseMessage } from 'src/_common/decorators';
 

@@ -1,17 +1,18 @@
 import { HttpStatus } from '@nestjs/common';
 import { ApiResponse } from '@orangepay/types';
 
+interface ServiceErrorInfo {
+  message: string;
+  statusCode: number;
+}
+
 export function getServiceErrorInfo(
-  apiResponse: ApiResponse,
+  serviceResponse: ApiResponse,
   defaultMessage = 'Ocorreu um erro inesperado.',
   defaultStatusCode = HttpStatus.INTERNAL_SERVER_ERROR,
-) {
-  const serviceResponseMessage: string = apiResponse?.message || defaultMessage;
-
-  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-  const serviceResponseStatusCode: number =
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-    apiResponse?.meta?.statusCodeError ?? defaultStatusCode;
-
-  return { serviceResponseMessage, serviceResponseStatusCode };
+): ServiceErrorInfo {
+  return {
+    message: serviceResponse?.message || defaultMessage,
+    statusCode: serviceResponse?.meta?.statusCodeError ?? defaultStatusCode,
+  };
 }

@@ -1,6 +1,6 @@
-import { HttpException, Injectable } from '@nestjs/common';
 import { SignInReqDTO, SignInResDTO } from '../../../presentation/dtos';
-import { delay } from 'src/_common/utils';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { delay } from '@orangepay/utils';
 
 @Injectable()
 export class AuthService {
@@ -14,13 +14,13 @@ export class AuthService {
     const user = true;
 
     if (!user) {
-      throw new HttpException('Credênciais inválidas', 404);
+      throw new HttpException('Credênciais inválidas', HttpStatus.BAD_REQUEST);
     }
 
-    const mathPassword = true;
+    const matchPassword = true;
 
-    if (!mathPassword) {
-      throw new HttpException('Credênciais inválidas', 400);
+    if (!matchPassword) {
+      throw new HttpException('Credênciais inválidas', HttpStatus.BAD_REQUEST);
     }
 
     const jwtToken = 'token';

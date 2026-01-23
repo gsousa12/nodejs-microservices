@@ -6,10 +6,9 @@ async function bootstrap() {
   const application = await NestFactory.create(AppModule);
 
   application.useGlobalFilters(new CustomExceptionsFilter());
-
-  application.setGlobalPrefix('v1/gateway');
+  application.setGlobalPrefix('gateway');
 
   await application.listen(process.env.PORT ?? 3000);
 }
-// eslint-disable-next-line @typescript-eslint/no-floating-promises
-bootstrap();
+
+void bootstrap();
