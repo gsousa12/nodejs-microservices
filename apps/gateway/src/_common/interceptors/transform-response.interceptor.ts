@@ -7,24 +7,30 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class TransformResponseInterceptor<T> implements NestInterceptor<T, ApiResponse<T>> {
-  constructor(private reflector: Reflector) {}
+  private readonly defaultMessage = 'Operação realizada com sucesso';
+
+  constructor(private readonly reflector: Reflector) {}
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<ApiResponse<T>> {
-    const message =
+    const message = this.getResponseMessage(context);
+
+    return next.handle().pipe(map((data: T) => this.buildSuccessResponse(data, message)));
+  }
+
+  private getResponseMessage(context: ExecutionContext): string {
+    return (
       this.reflector.getAllAndOverride<string>(RESPONSE_MESSAGE_KEY, [
         context.getHandler(),
         context.getClass(),
-      ]) || 'Operação realizada com sucesso';
-
-    return next.handle().pipe(
-      map(
-        (data: T) =>
-          ({
-            success: true,
-            message: message,
-            data: data,
-          }) as ApiResponse<T>,
-      ),
+      ]) ?? this.defaultMessage
     );
+  }
+
+  private buildSuccessResponse(data: T, message: string): ApiResponse<T> {
+    return {
+      success: true,
+      message,
+      ...(data !== undefined && data !== null && { data }),
+    } as ApiResponse<T>;
   }
 }
