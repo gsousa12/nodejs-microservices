@@ -4,10 +4,9 @@ import { Body, Controller, HttpStatus, Post } from '@nestjs/common';
 export class UsersController {
   @Post('/create')
   async create(@Body() request: any): Promise<any> {
-    console.log('createUserDto', request);
     await new Promise((resolve) => setTimeout(resolve, 100));
     //throw new HttpException('Error de integração', 500);
-    const user = false;
+    const user = true;
 
     if (!user) {
       return {

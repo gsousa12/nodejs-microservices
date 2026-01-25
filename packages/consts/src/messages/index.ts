@@ -1,1 +1,1 @@
-export * from "./generics.messages";
+export * from "./generic.messages";
