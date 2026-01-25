@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { Logger } from 'nestjs-pino';
+import { enviromentConfig } from './config/application/enviroment';
 
 async function bootstrap() {
   const application = await NestFactory.create(AppModule, {
@@ -11,7 +12,7 @@ async function bootstrap() {
 
   application.setGlobalPrefix('gateway');
 
-  await application.listen(process.env.PORT ?? 3000);
+  await application.listen(enviromentConfig.PORT);
 }
 
 void bootstrap();

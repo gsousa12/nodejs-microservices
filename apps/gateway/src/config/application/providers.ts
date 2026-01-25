@@ -5,18 +5,23 @@ import { GlobalExceptionFilter } from 'src/_common/filters';
 import { Provider } from '@nestjs/common';
 
 export const globalProviders: Provider[] = [
+  // Interceptors
   {
     provide: APP_INTERCEPTOR,
     useClass: TransformResponseInterceptor,
   },
   {
-    provide: APP_PIPE,
-    useClass: ZodValidationPipe,
-  },
-  {
     provide: APP_INTERCEPTOR,
     useClass: ZodSerializerInterceptor,
   },
+
+  // Pipes
+  {
+    provide: APP_PIPE,
+    useClass: ZodValidationPipe,
+  },
+
+  // Filters
   {
     provide: APP_FILTER,
     useClass: GlobalExceptionFilter,

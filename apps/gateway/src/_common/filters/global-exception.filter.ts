@@ -87,12 +87,16 @@ export class GlobalExceptionFilter implements ExceptionFilter {
   }
 
   private isObjectWithMessage(value: unknown): value is { message: string | string[] } {
-    return (
-      typeof value === 'object' &&
-      value !== null &&
-      'message' in value &&
-      (typeof (value as { message: unknown }).message === 'string' ||
-        Array.isArray((value as { message: unknown }).message))
-    );
+    const isObject = typeof value === 'object';
+
+    const isNonNullValue = value !== null;
+
+    const hasMessageProperty = 'message' in (value as object);
+
+    const hasValidMessageType =
+      typeof (value as { message: unknown }).message === 'string' ||
+      Array.isArray((value as { message: unknown }).message);
+
+    return isObject && isNonNullValue && hasMessageProperty && hasValidMessageType;
   }
 }
