@@ -2,7 +2,7 @@
   "name": "orangepay",
   "version": "1.0.0",
   "scripts": {
-    "build:pkgs": "pnpm -r --filter @orangepay/types --filter @orangepay/consts --filter @orangepay/utils build",
+    "build:pkgs": "pnpm -r --filter @orangepay/types --filter @orangepay/consts --filter @orangepay/utils --filter @orangepay/schemas build",
     "dev:client": "pnpm run build:pkgs && pnpm --filter @orangepay/client dev",
     "dev:core": "pnpm run build:pkgs && pnpm --filter @orangepay/gateway dev",
     "dev:identity": "pnpm run build:pkgs && pnpm --filter @orangepay/identity dev",

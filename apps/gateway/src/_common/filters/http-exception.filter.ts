@@ -20,13 +20,6 @@ export class CustomExceptionsFilter implements ExceptionFilter {
     const errorResponse: ApiResponse = {
       success: false,
       message,
-      // meta: {
-      //   time: new Date(),
-      //   statusCodeError: status,
-      //   ...(process.env.NODE_ENV === 'development' && {
-      //     otherInfo: { error: this.getErrorDetails(exception) },
-      //   }),
-      // },
     };
 
     response.status(status).json(errorResponse);
@@ -68,16 +61,4 @@ export class CustomExceptionsFilter implements ExceptionFilter {
   private isHttpExceptionResponse(response: unknown): response is HttpExceptionResponse {
     return typeof response === 'object' && response !== null && 'message' in response;
   }
-
-  // private getErrorDetails(exception: unknown): Record<string, any> {
-  //   if (exception instanceof Error) {
-  //     return {
-  //       name: exception.name,
-  //       message: exception.message,
-  //       stack: exception.stack,
-  //     };
-  //   }
-
-  //   return { exception: String(exception) };
-  // }
 }

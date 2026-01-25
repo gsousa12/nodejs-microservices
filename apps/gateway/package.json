@@ -23,12 +23,15 @@
     "@nestjs/common": "^11.0.1",
     "@nestjs/core": "^11.0.1",
     "@nestjs/platform-express": "^11.0.1",
+    "@orangepay/consts": "workspace:^0.0.0",
+    "@orangepay/schemas": "workspace:^0.0.0",
     "@orangepay/types": "workspace:^0.0.0",
     "@orangepay/utils": "workspace:^0.0.0",
-    "@orangepay/consts": "workspace:^0.0.0",
     "axios": "^1.13.2",
+    "nestjs-zod": "^5.1.1",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.1"
+    "rxjs": "^7.8.1",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

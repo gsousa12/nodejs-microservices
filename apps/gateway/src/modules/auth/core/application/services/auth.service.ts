@@ -7,8 +7,6 @@ export class AuthService {
   constructor() {}
 
   async signIn(request: SignInReqDTO): Promise<SignInResDTO> {
-    console.log(request);
-
     await delay(1000);
 
     const user = true;

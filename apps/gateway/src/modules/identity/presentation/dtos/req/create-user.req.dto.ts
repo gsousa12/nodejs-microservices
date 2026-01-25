@@ -1,5 +1,4 @@
-export class CreateUserReqDTO {
-  name: string;
-  email: string;
-  password: string;
-}
+import { createZodDto } from 'nestjs-zod';
+import { createUserReqSchema } from '@orangepay/schemas';
+
+export class CreateUserReqDTO extends createZodDto(createUserReqSchema) {}

@@ -1,12 +1,12 @@
 import { CreateUserResDTO } from 'src/modules/identity/presentation/dtos/res/create-user.res.dto';
 import { LogsService } from 'src/_common/modules/logs/core/application/service/logs.service';
-import { CreateUserReqDTO } from 'src/modules/identity/presentation/dtos';
 import { identityClient } from 'src/_common/integration/clients';
 import { HttpException, Injectable } from '@nestjs/common';
 import { getServiceErrorInfo } from 'src/_common/utils';
 import { IDENTITY_PATHS } from '@orangepay/consts';
 import { ApiResponse } from '@orangepay/types';
 import { delay } from '@orangepay/utils';
+import { CreateUserReqDTO } from 'src/modules/identity/presentation/dtos';
 
 @Injectable()
 export class IdentityService {
