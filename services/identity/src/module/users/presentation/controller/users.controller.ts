@@ -6,7 +6,7 @@ export class UsersController {
   async create(@Body() request: any): Promise<any> {
     await new Promise((resolve) => setTimeout(resolve, 100));
     //throw new HttpException('Error de integração', 500);
-    const user = true;
+    const user = false;
 
     if (!user) {
       return {
@@ -20,7 +20,7 @@ export class UsersController {
       };
     }
 
-    return {
+    const response = {
       success: true,
       message: 'Usuário criado com sucesso',
       data: {
@@ -30,11 +30,14 @@ export class UsersController {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access
         email: request.email,
         createdAt: new Date(),
+        updatedAt: new Date(),
       },
       meta: {
         requestId: '1234567890',
         time: new Date(),
       },
     };
+
+    return response;
   }
 }

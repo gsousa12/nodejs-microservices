@@ -1,19 +1,19 @@
 import { CreateUserResDTO } from 'src/modules/identity/presentation/dtos/res/create-user.res.dto';
 import { LogsService } from 'src/_common/modules/logs/core/application/service/logs.service';
+import { CreateUserReqDTO } from 'src/modules/identity/presentation/dtos';
 import { identityClient } from 'src/_common/integration/clients';
 import { HttpException, Injectable } from '@nestjs/common';
 import { getServiceErrorInfo } from 'src/_common/utils';
 import { IDENTITY_PATHS } from '@orangepay/consts';
 import { ApiResponse } from '@orangepay/types';
 import { delay } from '@orangepay/utils';
-import { CreateUserReqDTO } from 'src/modules/identity/presentation/dtos';
 
 @Injectable()
 export class IdentityService {
   constructor(private readonly logsService: LogsService) {}
 
   async create(request: CreateUserReqDTO): Promise<void> {
-    await delay(200);
+    await delay(0);
     const path = IDENTITY_PATHS.USERS.CREATE;
 
     const serviceResponse = await identityClient.post<ApiResponse<CreateUserResDTO>>(path, request);
@@ -23,7 +23,9 @@ export class IdentityService {
 
       await this.logsService.saveError(serviceResponse);
 
-      throw new HttpException(message, statusCode);
+      throw new HttpException(message, statusCode, {
+        cause: new Error('Erro ao criar usuário na Identity Service'),
+      });
     }
   }
 }

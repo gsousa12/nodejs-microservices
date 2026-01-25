@@ -6,15 +6,32 @@ import { ApiResponse } from '@orangepay/types';
 import { GENERIC_MESSAGES } from '@orangepay/consts';
 import { Response } from 'express';
 import { ZodValidationException } from 'nestjs-zod';
+import { PinoLogger } from 'nestjs-pino';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
+  constructor(private readonly logger: PinoLogger) {
+    this.logger.setContext(GlobalExceptionFilter.name);
+  }
+
   catch(exception: unknown, host: ArgumentsHost): void {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
 
     const status = this.getStatus(exception);
     const message = this.getMessage(exception);
+
+    const isZodException = exception instanceof ZodValidationException;
+
+    if (!isZodException) {
+      this.logger.error(
+        {
+          exception: exception instanceof Error ? exception.stack : exception,
+          status,
+        },
+        `${message}`,
+      );
+    }
 
     const errorResponse: ApiResponse = {
       success: false,
